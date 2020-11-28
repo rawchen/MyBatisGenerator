@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoyling.mapper.VisitMapper">
+  <resultMap id="BaseResultMap" type="com.yoyling.domain.Visit">
+    <id column="VisitID" jdbcType="INTEGER" property="visitid" />
+    <result column="VisitURL" jdbcType="VARCHAR" property="visiturl" />
+    <result column="VisitIP" jdbcType="VARCHAR" property="visitip" />
+    <result column="VisitCountry" jdbcType="VARCHAR" property="visitcountry" />
+    <result column="VisitProvince" jdbcType="VARCHAR" property="visitprovince" />
+    <result column="VisitCity" jdbcType="VARCHAR" property="visitcity" />
+    <result column="VisitHostName" jdbcType="VARCHAR" property="visithostname" />
+    <result column="VisitOS" jdbcType="VARCHAR" property="visitos" />
+    <result column="VisitTime" jdbcType="TIMESTAMP" property="visittime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    VisitID, VisitURL, VisitIP, VisitCountry, VisitProvince, VisitCity, VisitHostName, 
+    VisitOS, VisitTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from visit
+    where VisitID = #{visitid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from visit
+    where VisitID = #{visitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoyling.domain.Visit">
+    insert into visit (VisitID, VisitURL, VisitIP, 
+      VisitCountry, VisitProvince, VisitCity, 
+      VisitHostName, VisitOS, VisitTime
+      )
+    values (#{visitid,jdbcType=INTEGER}, #{visiturl,jdbcType=VARCHAR}, #{visitip,jdbcType=VARCHAR}, 
+      #{visitcountry,jdbcType=VARCHAR}, #{visitprovince,jdbcType=VARCHAR}, #{visitcity,jdbcType=VARCHAR}, 
+      #{visithostname,jdbcType=VARCHAR}, #{visitos,jdbcType=VARCHAR}, #{visittime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoyling.domain.Visit">
+    insert into visit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="visitid != null">
+        VisitID,
+      </if>
+      <if test="visiturl != null">
+        VisitURL,
+      </if>
+      <if test="visitip != null">
+        VisitIP,
+      </if>
+      <if test="visitcountry != null">
+        VisitCountry,
+      </if>
+      <if test="visitprovince != null">
+        VisitProvince,
+      </if>
+      <if test="visitcity != null">
+        VisitCity,
+      </if>
+      <if test="visithostname != null">
+        VisitHostName,
+      </if>
+      <if test="visitos != null">
+        VisitOS,
+      </if>
+      <if test="visittime != null">
+        VisitTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="visitid != null">
+        #{visitid,jdbcType=INTEGER},
+      </if>
+      <if test="visiturl != null">
+        #{visiturl,jdbcType=VARCHAR},
+      </if>
+      <if test="visitip != null">
+        #{visitip,jdbcType=VARCHAR},
+      </if>
+      <if test="visitcountry != null">
+        #{visitcountry,jdbcType=VARCHAR},
+      </if>
+      <if test="visitprovince != null">
+        #{visitprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="visitcity != null">
+        #{visitcity,jdbcType=VARCHAR},
+      </if>
+      <if test="visithostname != null">
+        #{visithostname,jdbcType=VARCHAR},
+      </if>
+      <if test="visitos != null">
+        #{visitos,jdbcType=VARCHAR},
+      </if>
+      <if test="visittime != null">
+        #{visittime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoyling.domain.Visit">
+    update visit
+    <set>
+      <if test="visiturl != null">
+        VisitURL = #{visiturl,jdbcType=VARCHAR},
+      </if>
+      <if test="visitip != null">
+        VisitIP = #{visitip,jdbcType=VARCHAR},
+      </if>
+      <if test="visitcountry != null">
+        VisitCountry = #{visitcountry,jdbcType=VARCHAR},
+      </if>
+      <if test="visitprovince != null">
+        VisitProvince = #{visitprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="visitcity != null">
+        VisitCity = #{visitcity,jdbcType=VARCHAR},
+      </if>
+      <if test="visithostname != null">
+        VisitHostName = #{visithostname,jdbcType=VARCHAR},
+      </if>
+      <if test="visitos != null">
+        VisitOS = #{visitos,jdbcType=VARCHAR},
+      </if>
+      <if test="visittime != null">
+        VisitTime = #{visittime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where VisitID = #{visitid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoyling.domain.Visit">
+    update visit
+    set VisitURL = #{visiturl,jdbcType=VARCHAR},
+      VisitIP = #{visitip,jdbcType=VARCHAR},
+      VisitCountry = #{visitcountry,jdbcType=VARCHAR},
+      VisitProvince = #{visitprovince,jdbcType=VARCHAR},
+      VisitCity = #{visitcity,jdbcType=VARCHAR},
+      VisitHostName = #{visithostname,jdbcType=VARCHAR},
+      VisitOS = #{visitos,jdbcType=VARCHAR},
+      VisitTime = #{visittime,jdbcType=TIMESTAMP}
+    where VisitID = #{visitid,jdbcType=INTEGER}
+  </update>
+</mapper>

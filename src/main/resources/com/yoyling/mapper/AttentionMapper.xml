@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoyling.mapper.AttentionMapper">
+  <resultMap id="BaseResultMap" type="com.yoyling.domain.Attention">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="beuserid" jdbcType="INTEGER" property="beuserid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gid, userid, beuserid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attention
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from attention
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoyling.domain.Attention">
+    insert into attention (gid, userid, beuserid
+      )
+    values (#{gid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{beuserid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoyling.domain.Attention">
+    insert into attention
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="beuserid != null">
+        beuserid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="beuserid != null">
+        #{beuserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoyling.domain.Attention">
+    update attention
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="beuserid != null">
+        beuserid = #{beuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoyling.domain.Attention">
+    update attention
+    set userid = #{userid,jdbcType=INTEGER},
+      beuserid = #{beuserid,jdbcType=INTEGER}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>
